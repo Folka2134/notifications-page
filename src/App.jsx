@@ -1,7 +1,10 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import React, { Component } from "react";
+// import ReactDOM from "react-dom";
+
+import users from "./users";
 
 import "./App.css";
+import { useState } from "react";
 
 function App() {
   return (
@@ -18,16 +21,30 @@ function App() {
         </div>
         <div className="notifications">
           <ul>
-            <li className="my-4 flex bg-blue-100 bg-opacity-30 p-2">
-              <img className="px-5" src="#" alt="avatar" />
-              <div>
-                <p>
-                  Mark Webber reacted to your recent post My first tournament
-                  today!
-                </p>
-                <p>1m ago</p>
-              </div>
-            </li>
+            {users.map((user, userIndex) => (
+              <li
+                key={userIndex}
+                className={`${user.unread && "unread"} my-4 flex p-2`}
+                onClick={(e) => {
+                  e.target.classList.remove("unread");
+                  user.unread = false;
+                }}
+              >
+                <img className="px-5" src="#" alt="avatar" />
+                <div className="">
+                  <div className="flex">
+                    <p className="mr-1">{user.name}</p>
+                    <p>{user.notification}</p>
+                  </div>
+                  <p>{user.posted} ago</p>
+                </div>
+                {user.unread && (
+                  <svg height="50" width="50">
+                    <circle cx="15" cy="12" r="4" fill="red" />
+                  </svg>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

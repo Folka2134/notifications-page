@@ -3,3 +3,7 @@
   min-width: 320px;
   min-height: 100vh;
 }
+
+.unread {
+  background-color: rgba(59, 130, 246, 0.3);
+}

@@ -45,3 +45,5 @@ const users = [
     unread: false,
   },
 ];
+
+export default users;
